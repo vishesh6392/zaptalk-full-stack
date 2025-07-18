@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/vt639/OneDrive/Desktop/backend/Project/frontend/chatApp/public",
-      "program": "c:/Users/vt639/OneDrive/Desktop/backend/Project/frontend/chatApp/public/build/Debug/outDebug",
+      "cwd": "c:/Users/vt639/OneDrive/Desktop/backend/zapTalk",
+      "program": "c:/Users/vt639/OneDrive/Desktop/backend/zapTalk/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
