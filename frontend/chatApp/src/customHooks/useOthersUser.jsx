@@ -20,6 +20,6 @@ const useOthersUser= ()=>{
         }
         fetchUser();
     
-    },[dispatch])
+    },[dispatch,userData])
 }
 export default useOthersUser;

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+//import { setMessages } from "./message.slice";
 
 
 
@@ -8,6 +9,7 @@ const userSlice=createSlice({
         userData:null,
         otherUserData:null,
         selectUser:null,
+    
     },
     reducers:{
         setSelectUser:(state,action)=>{
@@ -19,8 +21,9 @@ const userSlice=createSlice({
         setOtherUserData:(state,action)=>{
             state.otherUserData=action.payload
         },
+        
     }
 })
 
-export const {setUserData,setOtherUserData,setSelectUser}=userSlice.actions;
+export const {setUserData,setOtherUserData,setSelectUser,setMessages}=userSlice.actions;
 export default userSlice.reducer;

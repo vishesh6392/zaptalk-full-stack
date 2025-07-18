@@ -8,6 +8,7 @@ const AuthRouter=require("./routes/auth.routes");
 const config = require("config");
 dotEvn.config();
 const userRouter=require("./routes/user.routes");
+const messageRouter = require("./routes/message.routes");
 
 const port=process.env.PORT || 5000;
 const app=express();
@@ -24,6 +25,7 @@ app.use(cookieParser());
 
 app.use("/auth",AuthRouter);
 app.use("/user",userRouter);
+app.use("/message",messageRouter);
 
 
 app.get('/',(req,res)=>{

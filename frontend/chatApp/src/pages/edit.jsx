@@ -25,6 +25,7 @@ const EditProfile = () => {
     let [backendCoverPhoto,setBackendCoverPhoto]=useState( null)
     let [frontendImage,setFrontendImage]=useState( userData.image || profileP)
     let [frontendCoverPhoto,setFrontendCoverPhoto]=useState( userData.coverPhoto || coverP )
+    let [errorMessage,setErrorMessage]=useState("")
     const image=useRef()
     const coverPhoto=useRef()
     const navigate=useNavigate()
@@ -57,8 +58,15 @@ const EditProfile = () => {
                   let result= await axios.post(`${serverUrl}/user/edit`,formData,
                     {withCredentials:true}
                   )
+                  console.log(result.data);
+                  if(result?.data?.name){
                   dispatch(setUserData(result.data))
                   setSaving(false)
+                  navigate('/')
+                  }else{
+                    setErrorMessage("plesee Uplaod Name")
+                  setSaving(false)
+                  }
                   
        } catch (error) {
            console.log(error);
@@ -166,13 +174,14 @@ const EditProfile = () => {
               className="mt-2 w-full h-24 rounded-xl object-cover border-2 border-purple-300 shadow-md"
             />
           </div>
-
+         {errorMessage && <p className="text-red-500 mb-2">{errorMessage}</p>}
           <div className="md:col-span-2 text-center mt-4">
+           
+            {saving && <p className="text-blue-500 mb-2">Saving changes...</p>}
             <button
               type="submit"
               className="bg-purple-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-purple-700 transition-all duration-300 shadow-lg"
               disabled={saving}
-              onClick={navigate('/')}
             >
              { saving?"Saving...":"Save Changes"} 
             </button>
