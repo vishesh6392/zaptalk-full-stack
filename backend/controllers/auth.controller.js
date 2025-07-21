@@ -36,8 +36,8 @@
         res.cookie("token",token,{
             httpOnly:true,
             maxAge:7*24*60*60*1000,
-            sameSite:"strict",
-            secure:false,
+            sameSite:"none",
+            secure:true,
         })
         // console.log(userModel);
         return res.status(201).json(userModel)
@@ -71,8 +71,8 @@
         res.cookie("token",token,{
             httpOnly:true,
             maxAge:7*24*60*60*1000,
-            sameSite:"strict",
-            secure:false,
+            sameSite:"none",
+            secure:true,
         })
         console.log(user);
         return res.status(201).json(user)
@@ -88,8 +88,8 @@
  const logout=async(req,res)=>{
     try {
         res.clearCookie("token",{
-            sameSite:"strict",
-            secure:false,   
+            sameSite:"none",
+            secure:true,   
         });
          res.status(200).json({ message: "logout successfully" });
     }
