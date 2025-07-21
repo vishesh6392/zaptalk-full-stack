@@ -39,7 +39,9 @@ useEffect(() => {
 
     query: { userId: userData?._id || '' // Pass userId if available
     },
-    transports: ['websocket'], // Use WebSocket transport
+   
+     reconnectionAttempts: 5,
+     reconnectionDelay: 2000,      // Use WebSocket transport
   });
   dispatch(setSocket(socketio));
  
