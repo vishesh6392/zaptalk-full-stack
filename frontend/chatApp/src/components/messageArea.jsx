@@ -135,7 +135,7 @@ function MessageArea() {
             className="flex-auto px-4 py-3 overflow-y-auto space-y-3 bg-gray-50">
               
             
-              {messages.map((mess,index)=>{
+              {messages?.map((mess,index)=>{
               if (mess.sender!= selectUser._id) {
                 return (
                   <ReceverMessage key={index} message={mess} image={mess.image} />
