@@ -12,7 +12,9 @@ import recording from './recording';
 import axios from 'axios';
 import { serverUrl } from '../main';
 import { setMessages } from '../redux/message.slice';
-import useGetMessages from '../customHooks/useGetMessages';
+import useGetMessages from '../customHooks/useGetMessages'
+import { useContext } from 'react';
+import { SocketContext } from '../App'; // Adjust the path as necessary
 
 
 
