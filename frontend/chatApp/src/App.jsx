@@ -5,7 +5,7 @@ import Login from './pages/Login.jsx'
 import useCurrentUser from './customHooks/useCurrentUser.jsx'
 import { useSelector } from 'react-redux'
 import Home from './pages/home.jsx'
-import Profile from './pages/Profile.jsx'
+import Profile from './pages/profile.jsx'
 import EditProfile from './pages/edit.jsx'
 import useOthersUser from './customHooks/useOthersUser.jsx'
 
