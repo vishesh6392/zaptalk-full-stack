@@ -1,6 +1,6 @@
 const express=require("express");
  const userRouter=express.Router();
- const {getCurrenUser,editProfile,getOthersUser}=require("../controllers/user.controller");
+ const {getCurrenUser,editProfile,getOthersUser,getOnSearch}=require("../controllers/user.controller");
  const isAuth=require("../middlewars/isAuth");
 const { upload } = require("../middlewars/multer");
 const multer=require("multer");
@@ -14,6 +14,7 @@ const multer=require("multer");
 //   console.log("editProfile type:", typeof editProfile)
   userRouter.get("/others",isAuth,getOthersUser);
   userRouter.get("/current",isAuth,getCurrenUser);
+  userRouter.get("/search",isAuth,getOnSearch);
   userRouter.post('/edit',isAuth,upload.fields([{name:'image'},{name:'coverPhoto'}]),editProfile)
 
 

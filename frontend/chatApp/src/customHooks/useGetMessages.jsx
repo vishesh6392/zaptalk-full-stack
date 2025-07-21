@@ -15,7 +15,7 @@ const useGetMessages = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-          console.log("Fetching messages for user:", selectUser._id);
+          // console.log("Fetching messages for user:", selectUser._id);
         if (!selectUser?._id) {
           console.error("No user selected for fetching messages");
           return;
@@ -24,7 +24,7 @@ const useGetMessages = () => {
           `${serverUrl}/message/get/${selectUser._id}`,
           { withCredentials: true }
         );
-        console.log("Fetched messages:", result.data);
+        // console.log("Fetched messages:", result.data);
         dispatch(setMessages(result.data));
       } catch (error) {
         console.error("Error fetching messages", error);

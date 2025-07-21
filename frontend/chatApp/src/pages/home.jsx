@@ -12,7 +12,7 @@ import useGetMessages from '../customHooks/useGetMessages.jsx';
 function home() {
 
   useGetMessages()
-  console.log(useGetMessages())
+  // console.log(useGetMessages())
   return (
     <div className='flex w-full h-[100vh]'>
     <Sidebar/>

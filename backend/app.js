@@ -9,9 +9,9 @@ const config = require("config");
 dotEvn.config();
 const userRouter=require("./routes/user.routes");
 const messageRouter = require("./routes/message.routes");
-
+ const { app, io, server } = require("./socket/socket.js"); 
 const port=process.env.PORT || 5000;
-const app=express();
+
 
 app.use(cors({
     origin:["http://localhost:5173"],
@@ -32,7 +32,7 @@ app.get('/',(req,res)=>{
     res.send("hey");
 })
 
-app.listen(port,()=>{
+server.listen(port,()=>{
      db();
     console.log("connected to server")
 })

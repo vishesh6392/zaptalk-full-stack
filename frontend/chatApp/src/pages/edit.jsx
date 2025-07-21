@@ -18,8 +18,6 @@ const EditProfile = () => {
     let [name,setName]=useState(userData.name || "")
     let [livesin,setLivesin]=useState(userData.livesin || "")
     let [about,setAbout]=useState(userData.about || "")
-    //let [image,setImage ]=useState(userData.image || "")
-   // let [coverPhoto,setCoverPhoto]=useState(userData.coverPhoto || "")
     let [saving,setSaving]=useState(false)
     let [backendImage,setBackendImage]=useState( null)
     let [backendCoverPhoto,setBackendCoverPhoto]=useState( null)
@@ -58,7 +56,7 @@ const EditProfile = () => {
                   let result= await axios.post(`${serverUrl}/user/edit`,formData,
                     {withCredentials:true}
                   )
-                  console.log(result.data);
+                  // console.log(result.data);
                   if(result?.data?.name){
                   dispatch(setUserData(result.data))
                   setSaving(false)

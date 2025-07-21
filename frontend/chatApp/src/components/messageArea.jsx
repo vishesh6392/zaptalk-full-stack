@@ -8,14 +8,13 @@ import EmojiPicker from 'emoji-picker-react';
 import SenderMessage from './senderMessage';
 import ReceverMessage from './receverMessage';
 import { FaMicrophone } from 'react-icons/fa'; 
-import recording from './recording';
+//import recording from './recording';
 import axios from 'axios';
 import { serverUrl } from '../main';
 import { setMessages } from '../redux/message.slice';
-import useGetMessages from '../customHooks/useGetMessages'
-import { useContext } from 'react';
-import { SocketContext } from '../App'; // Adjust the path as necessary
-
+import useGetMessages from '../customHooks/useGetMessages';
+import {setSocket} from '../redux/user.slice'
+import {io} from 'socket.io-client'
 
 
 
@@ -31,9 +30,9 @@ function MessageArea() {
   const [backendImage, setBackendImage] = useState(null);
   const imageRef = useRef();
   const scrollRef = useRef(null);
+  const Socket = useSelector((state) => state.user.socket);
  
   
- // let [messages, setMessages] = useState([]);
   const messages= useSelector((state) => state.message.messages);
 
 
@@ -42,8 +41,11 @@ function MessageArea() {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
-  console.log("Messages in MessageArea:", messages);
-   console.log("Selected User in MessageArea:", selectUser);
+  const handleScroll = () => {
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }
+  // console.log("Messages in MessageArea:", messages);
+  //  console.log("Selected User in MessageArea:", selectUser);
 
   const handleEmojiClick = (emoji) => {
     setInputValue(prev => prev + emoji.emoji);
@@ -64,14 +66,14 @@ function MessageArea() {
     if (backendImage) {
       formData.append("image", backendImage);
     } 
-    console.log("Sending message with data:", formData);
+    // console.log("Sending message with data:", formData);
     
   
     let recieverId = selectUser._id;
-    console.log("Sending message to user:", selectUser._id);
+    // console.log("Sending message to user:", selectUser._id);
     if (!selectUser) {
-      console.error("No user selected for sending message");
-      return; 
+       console.error("No user selected for sending message");
+      return;
     } 
     const result= await axios.post(`${serverUrl}/message/send/${recieverId}`, formData, {
       withCredentials: true,
@@ -79,13 +81,26 @@ function MessageArea() {
       "Content-Type": "multipart/form-data",
         } }
     );
-      console.log(result.data);
+      // console.log(result.data);
     dispatch(setMessages( [...messages, result.data]));
     setInputValue("");
     setFrontendImage(null);
     setBackendImage(null);
 
   }
+  
+  useEffect(() => {
+    if (!Socket) return;
+    Socket.on("newMessage", (data) => {
+      if (data?.newMessage) {
+      console.log("New message received:", data.newMessage);
+      dispatch(setMessages([...messages, data.newMessage]));
+      }
+    });
+    return () => {
+      Socket.off("newMessage");
+    }
+  }, [Socket,messages]);
   return (
     <>
     
@@ -116,6 +131,7 @@ function MessageArea() {
             {/* Messages Area */}
             <div 
             ref={scrollRef}
+            onLoad={handleScroll}
             className="flex-auto px-4 py-3 overflow-y-auto space-y-3 bg-gray-50">
               
             

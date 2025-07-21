@@ -45,7 +45,7 @@ function Login() {
                       setPassword('')
                      setError(data.message)
                       setLoding(false);
-                     console.log(data);
+                    //  console.log(data);
                     }
                 catch(err){
                 console.log(err);

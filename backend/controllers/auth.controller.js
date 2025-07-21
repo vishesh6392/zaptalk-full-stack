@@ -10,13 +10,13 @@
  const signup= async(req,res)=>{
     try {
         const {username,email,password}=req.body;
-        console.log(req.body);
+        // console.log(req.body);
         
        const user = await User.findOne({
                     $or: [{ email }, { username }]
                  });
 
-        console.log(user);
+        // console.log(user);
         
         if(user){
              return  res.status(400).json({ message: "User already exists" });
@@ -32,14 +32,14 @@
         })
 
         const token= await genToken(userModel._id);
-        console.log(token);
+        // console.log(token);
         res.cookie("token",token,{
             httpOnly:true,
             maxAge:7*24*60*60*1000,
             sameSite:"strict",
             secure:false,
         })
-        console.log(userModel);
+        // console.log(userModel);
         return res.status(201).json(userModel)
 
 

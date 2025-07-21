@@ -55,7 +55,7 @@ function Signup() {
                        setPassword("")
                      
                       setLoding(false);
-                     console.log(data);
+                    //  console.log(data);
                     }
                 catch(err){
                 console.log(err);
