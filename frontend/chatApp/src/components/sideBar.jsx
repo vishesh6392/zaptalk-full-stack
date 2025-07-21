@@ -118,7 +118,7 @@ function SideBar() {
           <div>
             {otherUserData?.map(
               (user) =>
-                onlineUsers.includes(user._id) &&
+                onlineUsers?.includes(user._id) &&
                 !Search && (
                   <div className="relative   inline-block  rounded-full shadow-gray-500 shadow-lg mr-2 ">
                     <div className="w-[60px] h-[60px]  rounded-full overflow-hidden  bg-white">
@@ -157,7 +157,7 @@ function SideBar() {
                 <p className="font-medium">
                   {user.name ? user.name : "John Doe"}
                 </p>
-                {onlineUsers.includes(user._id) ? (
+                {onlineUsers?.includes(user._id) ? (
                   <p className="text-sm text-green-600">Online</p>
                 ) : (
                   <p className="text-sm text-red-600">Offline</p>
@@ -197,7 +197,7 @@ function SideBar() {
                         "https://placehold.co/150x150/cccccc/333333?text=User";
                     }}
                   />
-                  {onlineUsers.includes(user._id) && (
+                  {onlineUsers?.includes(user._id) && (
                     <span className="absolute bottom-0 right-0 block w-3 h-3 bg-green-500 rounded-full ring-2 ring-white"></span>
                   )}
                 </div>
@@ -207,7 +207,7 @@ function SideBar() {
                   </p>
                   <p
                     className={`text-sm ${
-                      onlineUsers.includes(user._id)
+                      onlineUsers?.includes(user._id)
                         ? "text-green-600"
                         : "text-red-500"
                     }`}
